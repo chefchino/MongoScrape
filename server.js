@@ -18,27 +18,25 @@ app.engine(
   
 var databaseUrl = "news";
 var collections = ["articles"];
+axios.get("https://www.bbc.com").then(function(response) {
 
-// var db = mongojs(databaseUrl, collections);
+  var $ = cheerio.load(response.data);
 
-// db.on("error", function(error) {
-//     console.log("Database Error:" , error);
-// });
+  var results = [];
 
-// app.get("/", function(req, res) {
-//     res.send("I'm IN");
-// });
+  $("h3.media__title").each(function(i, element) {
 
-// app.get("/all", function(req, res) {
-//     db.articles.find({}, function(error, found) {
-//         if (error) {
-//             console.log(error);
-//         }
-//         else {
-//             res.json(found);
-//         }
-//     });
-// });
+    var title = $(element).children().text().trim();
+    var link = $(element).find("a").attr("href");
+
+    results.push({
+      title: title,
+      link: link
+    });
+  });
+
+  console.log(results);
+});
 
 app.listen(PORT, function() {
     console.log("App running on PORT 3000+1!!");
