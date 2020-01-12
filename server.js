@@ -28,12 +28,15 @@ axios.get("https://www.bbc.com").then(function(response) {
 
     var title = $(element).children().text().trim();
     var link = $(element).find("a").attr("href");
-
+    var summary = $(element).siblings().text().trim()
+    var photo = $(element).parent().siblings().find("img").attr("src");
     results.push({
-      title: title,
-      link: link
+        title: title,
+        link: link,
+        summary: summary,
+        photo: photo
     });
-  });
+});
 
   console.log(results);
 });
