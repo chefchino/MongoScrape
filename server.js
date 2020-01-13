@@ -4,7 +4,6 @@ var express = require("express");
 var exphbs = require("express-handlebars");
 var mongoose = require("mongoose");
 
-
 var app = express();
 var PORT = process.env.PORT || 3001;
 app.use(express.static("public"));
@@ -40,6 +39,10 @@ axios.get("https://www.bbc.com").then(function(response) {
 
   console.log(results);
 });
+
+const apiRoute = require('./routes/apiRoutes');
+app.use('/', apiRoute);
+
 
 app.listen(PORT, function() {
     console.log("App running on PORT 3000+1!!");
