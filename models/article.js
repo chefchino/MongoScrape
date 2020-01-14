@@ -1,3 +1,24 @@
+var mongoose = require("mongoose");
+
+var Schema = mongoose.Schema;
+var newArticle = new Schema({
+    title: {
+        type: String,
+        trim: true,
+        required: "String needed"
+    },
+    link: {
+        type: String
+    },
+    summary: {
+        type: String
+    },
+    photo: {
+        type: String
+    }
+});
+var Article = mongoose.model("article", newArticle);
+module.exports = Article;
 
 // {
 //   title: "Name of the article",
