@@ -1,6 +1,6 @@
 <nav>
     <div class="nav-wrapper">
-        <a href="#" class="brand-logo right">Logo</a>
+        <a href="#" class="brand-logo right">MongoScraper</a>
         <ul id="nav-mobile" class="left hide-on-med-and-down">
             <li><a href="badges.html">Home</a></li>
             <li><a href="collapsible.html">Saved Articles</a></li>
@@ -11,8 +11,12 @@
 </nav>
     
 <div id="title-box">
-    <img src="/images/bbc-news.jpeg">
+    {{!-- <img src="/images/bbc-news.jpeg"> --}}
 <h1 id="title">Mongo Scraper</h1>
 <h3 id="title2">From the BBC</h3>
 </div>
-
+<ul id="article-list">
+    {{#each Article}}
+    {{article}}
+    {{/each}}
+</ul>

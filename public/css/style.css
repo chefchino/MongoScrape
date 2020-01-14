@@ -1,8 +1,17 @@
 #title-box {
+    margin: 0 auto;
 height:600px;
-width:1550px;
+width:1530px;
+background-image: url("/images/bbc-news.jpeg");
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
 }
-img{
-    height: 600px;
-    width: 1550px;
-}
+#title, #title2 { 
+padding-left: 550px; 
+text-shadow: 2px 2px 5px blue;
+color: goldenrod;
+ }
+ #title {
+     padding-top:150px;
+ }
