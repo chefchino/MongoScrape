@@ -26,8 +26,6 @@ axios.get("https://www.bbc.com").then(function (response) {
 
   var $ = cheerio.load(response.data);
 
-  var results = [];
-
   $("ul.media-list--fixed-height h3.media__title").each(function (i, element) {
 
     var title = $(element).children().text().trim();
@@ -40,7 +38,6 @@ axios.get("https://www.bbc.com").then(function (response) {
       summary: summary,
       photo: photo
     }
-    // results.push(data)
     db.Article.create(data)
       .then(function (newsArt) {
         console.log("newsArt", newsArt)
@@ -49,14 +46,11 @@ axios.get("https://www.bbc.com").then(function (response) {
         console.log(err.message);
       });
   });
-
-  //   console.log(results);
 });
 app.get("/articles", function (req, res) {
   db.Article.find({})
     .then(function (data) {
       console.log("data", data)
-      // res.json(dbArticle);
       let renderStuff = [];
       for (var i = 0; i < data.length; i++) {
         var articleData = {
@@ -66,17 +60,9 @@ app.get("/articles", function (req, res) {
         };
         renderStuff.push(articleData)
       }
-      // data.forEach(object =>{
-        // var articleData = {
-        //   title: object.title,
-        //   summary: object.summary,
-        //   link: object.link
-        // };
-        // renderStuff.push(object)
-      // })
       res.render("index", { Article: renderStuff })
     })
-    // })
+
     .catch(function (err) {
       res.json(err);
     });

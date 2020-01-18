@@ -1,22 +1,17 @@
 var newArticles = $("#newArticles");
 var clearArticles = $("#clearArticles");
-console.log("hello world");
-$.getJSON("/articles", function(data) {
-    console.log("data", data)
-   
-// newArticles(articleData.title, articleData.summary, articleData.link);
-// console.log("new",articleData)
-
-// $(document).ready(function() {
-    
-    
-    
-// })
+$(document).ready(function () {
+    console.log("hello world");
+    $(document).on("click", "#newArticles", function () {
+        event.preventDefault();
+        window.location.replace("/articles");
+    })
+    $(document).on("click", "#clearArticles", function() {
+        console.log("click")
+        event.preventDefault();
+        window.location.replace("/");
+    })
+    .catch(function(err) {
+        console.log(err)
+    });
 })
-
-// newArticles.on("click", function (event) {
-//     event.preventDefault();
-//     var getArticles = {
-        
-//     }
-
