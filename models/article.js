@@ -15,6 +15,10 @@ var newArticle = new Schema({
     },
     photo: {
         type: String
+    },
+    notes: {
+        type: Schema.Types.ObjectId,
+        ref: "notes"
     }
 });
 var Article = mongoose.model("article", newArticle);

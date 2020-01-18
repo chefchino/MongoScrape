@@ -1,8 +1,10 @@
-const router = require('express').Router();
+var express = require("express");
+const app = express.Router();
+var article = require("../models/article")
 
-router.route('/').get((req, res) => {
-    console.log("hello world");
-    res.render('index', {layout: 'main', template: 'index-template'});
+app.route('/').get((req, res) => {
+
+    res.render('index', {layout: 'main'});
 });
 
-module.exports=router;
+module.exports=app;

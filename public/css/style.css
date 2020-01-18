@@ -15,3 +15,17 @@ color: goldenrod;
  #title {
      padding-top:150px;
  }
+h4 {
+    background-color: maroon;
+    color: white;
+}
+h6 {
+    background-color: lightsteelblue;
+    color: white;
+}
+li {
+    background-color: maroon;
+}
+a {
+    background-color: white;
+}
