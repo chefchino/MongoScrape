@@ -38,15 +38,6 @@ $(document).ready(function () {
         console.log("I'm in!!", lastClicked)
         $('#modal1').modal('open');
     })
-
-    $(document).on("click", "#homeNav", function (req, res) {
-        // event.preventDefault();
-        window.location.replace('/')
-    })
-    $(document).on("click", "#saveNav", function (req, res) {
-        // event.preventDefault();
-        window.location.replace('/saved')
-    })
     $(document).on('click', "#submit", function (event) {
         event.preventDefault();
         console.log("1", lastClicked)
@@ -55,13 +46,22 @@ $(document).ready(function () {
             url: "/notes/" + lastClicked,
             datatype: "json",
             data: {
-                comment: $("#blog").val()
+                note: $("#blog").val()
             },
             success: function (data) {
                 console.log("data1", data)
+                location.reload();
             }
         })
 
+    })
+    $(document).on("click", "#homeNav", function (req, res) {
+        // event.preventDefault();
+        window.location.replace('/')
+    })
+    $(document).on("click", "#saveNav", function (req, res) {
+        // event.preventDefault();
+        window.location.replace('/saved')
     })
 
 

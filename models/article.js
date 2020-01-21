@@ -20,10 +20,11 @@ var newArticle = new Schema({
         type:Boolean,
         default: false
     },
-    notes: {
+    notes: [{
         type: Schema.Types.ObjectId,
         ref: "Note"
     }
+]
 });
 var Article = mongoose.model("article", newArticle);
 module.exports = Article;

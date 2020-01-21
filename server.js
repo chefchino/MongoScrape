@@ -76,6 +76,7 @@ app.get("/articles", function (req, res) {
 });
 app.get("/saved", function (req, res) {
   db.Article.find({saved: true})
+  .populate("notes")
   .then(function(data) {
     let renderSaved = [];
     for (i=0;i<data.length;i++) {
@@ -83,7 +84,8 @@ app.get("/saved", function (req, res) {
         id: data[i]._id,
         title: data[i].title,
         summary: data[i].summary,
-        link: data[i].link
+        link: data[i].link, 
+        notes: data[i].notes.map(note => note.note )
       };
       renderSaved.push(articleSaved)
     }
@@ -124,8 +126,29 @@ app.post("/update/:id", function(req, res) {
 });
 app.post("/notes/:id", function (req, res) {
   console.log("notes", req.url, req.params, req.body)
-  res.json({"roundtrip": true})
+  db.Note.create(req.body)
+  .then(function(dbNote) {
+    return db.Article.findOneAndUpdate({}, { $push: { notes: dbNote._id}}, { new: true});
+  })
+  .then(function(dbArticle) {
+    res.json(dbArticle);
+  })
+  .catch(function(err) {
+    res.json(err);
+  })
+  // res.json({"roundtrip": true})
 })
+// app.get("/populateArticles", function (req, res) {
+//   console.log("populated");
+//   db.Article.find({})
+//   .populate("notes")
+//   .then(function(dbArticle) {
+//     res.json(dbArticle);
+//   })
+//   .catch(function(err) {
+//     res.json(err);
+//   });
+// });
 const apiRoute = require('./routes/apiRoutes');
 app.use('/', apiRoute);
 
