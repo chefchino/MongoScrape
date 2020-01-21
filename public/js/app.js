@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
     $('.modal').modal();
     console.log("hello world");
@@ -11,7 +10,6 @@ $(document).ready(function () {
     })
     $(document).on("click", ".saveArt", function (event) {
         event.preventDefault()
-
         var id = $(this);
         var docId = id.attr("data-id")
         console.log("dopcId", docId)
@@ -23,15 +21,9 @@ $(document).ready(function () {
                 saved: true
             },
             success: function (data) {
-                console.log("saved", data)
-                // $(".saveArt").html("<button class='comment' data-id'" +data._id+"'>Comment</button")
                 $("#li-" + docId).remove();
-                // location.reload();
             }
-
-
         });
-
     })
     $(".commentNotes").on("click", function () {
         lastClicked = $(this).attr("data-id")
@@ -53,17 +45,11 @@ $(document).ready(function () {
                 location.reload();
             }
         })
-
     })
     $(document).on("click", "#homeNav", function (req, res) {
-        // event.preventDefault();
         window.location.replace('/')
     })
     $(document).on("click", "#saveNav", function (req, res) {
-        // event.preventDefault();
         window.location.replace('/saved')
     })
-
-
-
 })

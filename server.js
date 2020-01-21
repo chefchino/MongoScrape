@@ -5,7 +5,6 @@ var exphbs = require("express-handlebars");
 var mongoose = require("mongoose");
 var mongojs = require("mongojs");
 db = require("./models");
-
 var PORT = process.env.PORT || 3002;
 var app = express();
 app.use(express.urlencoded({extended:true}))
@@ -18,20 +17,12 @@ app.engine(
   })
 );
 app.set("view engine", "handlebars");
-
 var databaseUrl = "mongodb://localhost/news";
-
-
 mongoose.connect(databaseUrl, { useNewUrlParser: true, useUnifiedTopology: true });
-
   app.get("/scrape", function (req, res) {
-
     axios.get("https://www.bbc.com").then(function (response) {
-
       var $ = cheerio.load(response.data);
-
       $("ul.media-list--fixed-height h3.media__title").each(function (i, element) {
-
         var title = $(element).children().text().trim();
         var link = $(element).find("a").attr("href");
         var summary = $(element).siblings().text().trim()
@@ -42,7 +33,6 @@ mongoose.connect(databaseUrl, { useNewUrlParser: true, useUnifiedTopology: true 
           summary: summary,
           photo: photo
         }
-        // console.log("data", data)
         db.Article.create(data)
           .then(function (newsArt) {
           })
@@ -53,7 +43,6 @@ mongoose.connect(databaseUrl, { useNewUrlParser: true, useUnifiedTopology: true 
       })
       res.redirect("/articles")
   })
-
 app.get("/articles", function (req, res) {
   db.Article.find({})
     .then(function (data) {
@@ -69,7 +58,6 @@ app.get("/articles", function (req, res) {
       }
       res.render("index", { Article: renderStuff })
     })
-
     .catch(function (err) {
       res.json(err);
     });
@@ -136,25 +124,10 @@ app.post("/notes/:id", function (req, res) {
   .catch(function(err) {
     res.json(err);
   })
-  // res.json({"roundtrip": true})
 })
-// app.get("/populateArticles", function (req, res) {
-//   console.log("populated");
-//   db.Article.find({})
-//   .populate("notes")
-//   .then(function(dbArticle) {
-//     res.json(dbArticle);
-//   })
-//   .catch(function(err) {
-//     res.json(err);
-//   });
-// });
 const apiRoute = require('./routes/apiRoutes');
 app.use('/', apiRoute);
-
-
 app.listen(PORT, function () {
   console.log("App running on PORT 3000+1!!");
 });
-
 module.exports = app;

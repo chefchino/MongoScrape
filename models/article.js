@@ -1,5 +1,4 @@
 var mongoose = require("mongoose");
-
 var Schema = mongoose.Schema;
 var newArticle = new Schema({
     title: {
@@ -28,20 +27,3 @@ var newArticle = new Schema({
 });
 var Article = mongoose.model("article", newArticle);
 module.exports = Article;
-
-// {
-//   title: "Name of the article",
-//   content: "Description of the article",
-//   _date: "time stamp",
-//   notes: [
-//            {
-//              comment: "user's comment .. ",
-//              user: "username"
-//            },
-//            {
-//              comment: " ... ",
-//              user: " ... "
-//            }
-//     		...
-//          ]
-// }

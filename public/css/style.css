@@ -1,13 +1,12 @@
 #title-box {
     margin: 0 auto;
-height:550px;
-width:1530px;
-background-image: url("/images/bbc-news.jpeg");
-background-repeat: no-repeat;
-background-attachment: fixed;
-background-size: cover;
+    height:550px;
+    width:1530px;
+    background-image: url("/images/bbc-news.jpeg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
-
 #newArticles {
     margin-right: 10px;
 }
@@ -20,7 +19,6 @@ background-size: cover;
     position: absolute;
     margin-left: 1340px;
     margin-top:7px;
-
 }
 .titleA {
     margin-top: 0;
@@ -32,9 +30,9 @@ background-size: cover;
     font-size: 20px;
 }
 #title, #title2 { 
-padding-left: 550px; 
-text-shadow: 2px 2px 5px blue;
-color: goldenrod;
+    padding-left: 550px; 
+    text-shadow: 2px 2px 5px blue;
+    color: goldenrod;
  }
  #title {
      padding-top:150px;
