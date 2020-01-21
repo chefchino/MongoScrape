@@ -35,9 +35,6 @@ $(document).ready(function () {
             // event.preventDefault();
            window.location.replace('/saved')
         })
-        // $(document).on("click", "#saveBtn", function(req, res) {
-        //     console.log("click")
-        //     res.render("/saved");
-        // })
+
     })
 })

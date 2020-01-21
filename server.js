@@ -22,7 +22,6 @@ var databaseUrl = "mongodb://localhost/news";
 
 mongoose.connect(databaseUrl, { useNewUrlParser: true, useUnifiedTopology: true });
 
-
   app.get("/scrape", function (req, res) {
 
     axios.get("https://www.bbc.com").then(function (response) {
@@ -44,7 +43,6 @@ mongoose.connect(databaseUrl, { useNewUrlParser: true, useUnifiedTopology: true 
         // console.log("data", data)
         db.Article.create(data)
           .then(function (newsArt) {
-            console.log("newsArt", newsArt)
           })
           .catch(function (err) {
             console.log(err.message);
@@ -57,7 +55,6 @@ mongoose.connect(databaseUrl, { useNewUrlParser: true, useUnifiedTopology: true 
 app.get("/articles", function (req, res) {
   db.Article.find({})
     .then(function (data) {
-      console.log("data", data)
       let renderStuff = [];
       for (var i = 0; i < data.length; i++) {
         var articleData = {
@@ -92,7 +89,7 @@ app.get("/saved", function (req, res) {
   })
 })
 app.get("/clear", function (req, res) {
-  db.Article.remove({}, function (err, res) {
+  db.Article.remove({saved: false}, function (err, res) {
     if (err) {
       console.log(err);
     } else {
@@ -102,7 +99,6 @@ app.get("/clear", function (req, res) {
   res.render("index");
 })
 app.post("/update/:id", function(req, res) {
-  console.log("i'm in", req.params.id)
   db.Article.update(
     {
       _id: mongojs.ObjectId(req.params.id)
