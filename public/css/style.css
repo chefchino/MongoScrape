@@ -22,6 +22,15 @@ background-size: cover;
     margin-top:7px;
 
 }
+.titleA {
+    margin-top: 0;
+    background-color: lightsteelblue;
+    color:black;
+}
+.commentArt {
+    color: white;
+    font-size: 20px;
+}
 #title, #title2 { 
 padding-left: 550px; 
 text-shadow: 2px 2px 5px blue;
@@ -41,7 +50,7 @@ h5 {
 li {
     box-sizing: border-box;
     background-color: maroon;
-    height: 150px;
+    height: 200px;
     margin: 0 auto;
 }
 a {
