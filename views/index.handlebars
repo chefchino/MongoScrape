@@ -1,12 +1,11 @@
 <nav>
     <div class="nav-wrapper">
         <a href="#" class="brand-logo right">MongoScraper</a>
-        <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a href="index.handlebars">Home</a></li>
-            <li><a href="saved.handlebars">Saved Articles</a></li>
-            <li><button id="newArticles"class="waves-effect waves-light btn">Scrape New Articles!</button></li>
-            <li><button id="clearArticles"class="waves-effect waves-light btn">Clear Articles</button></li>
-        </ul>
+            <a id="homeNav" href="/">Home</a>
+            <a id="saveNav" href="/saved">Saved Articles</a>
+        
+            <button id="newArticles"class="waves-effect waves-light btn">New Articles!</button>
+            <button id="clearArticles"class="waves-effect waves-light btn">Clear Articles</button>
     </div>
 </nav>
     
@@ -16,6 +15,6 @@
 </div>
 <ul id="article-list">
     {{#each Article}}
-    {{> article}}
+    {{> article saved=false}}
     {{/each}}
 </ul>

@@ -1,11 +1,25 @@
 #title-box {
     margin: 0 auto;
-height:600px;
+height:550px;
 width:1530px;
 background-image: url("/images/bbc-news.jpeg");
 background-repeat: no-repeat;
 background-attachment: fixed;
 background-size: cover;
+}
+
+#newArticles {
+    margin-right: 10px;
+}
+#article-list,
+#savedArticle-list{
+    margin-left: 17px;
+}
+.saveArt{
+    position: absolute;
+    margin-left: 1340px;
+    margin-top:7px;
+
 }
 #title, #title2 { 
 padding-left: 550px; 
@@ -15,17 +29,20 @@ color: goldenrod;
  #title {
      padding-top:150px;
  }
-h4 {
+#title3 {
     background-color: maroon;
     color: white;
 }
-h6 {
+h5 {
     background-color: lightsteelblue;
-    color: white;
+    color:black;
 }
 li {
+    box-sizing: border-box;
     background-color: maroon;
+    height: 150px;
+    margin: 0 auto;
 }
 a {
-    background-color: white;
+    color: white;
 }
