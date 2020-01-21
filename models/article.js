@@ -22,7 +22,7 @@ var newArticle = new Schema({
     },
     notes: {
         type: Schema.Types.ObjectId,
-        ref: "notes"
+        ref: "Note"
     }
 });
 var Article = mongoose.model("article", newArticle);

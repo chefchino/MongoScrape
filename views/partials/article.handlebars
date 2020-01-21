@@ -1,6 +1,13 @@
 <li id="li-{{id}}">
-    <button  class="saveArt waves-effect waves-light btn-small" 
+    {{#if saved}}
+
+    <button class="commentNotes waves-effect waves-light btn-small" 
+ data-id="{{id}}"data-saved="{{saved}}"> Make a Comment</button>
+    {{/if}}
+    {{#unless saved}}
+    <button   class="saveArt waves-effect waves-light btn-small" 
     data-id="{{id}}"data-saved="{{saved}}"> Save Article</button>
+    {{/unless}}
     <h3 id="title3">{{title}}</h3>
     <h5>{{summary}}</h5>
     <a>{{link}}</a>

@@ -15,7 +15,8 @@ background-size: cover;
 #savedArticle-list{
     margin-left: 17px;
 }
-.saveArt{
+.saveArt,
+.comment{
     position: absolute;
     margin-left: 1340px;
     margin-top:7px;

@@ -8,6 +8,8 @@ db = require("./models");
 
 var PORT = process.env.PORT || 3002;
 var app = express();
+app.use(express.urlencoded({extended:true}))
+app.use(express.json())
 app.use(express.static("public"));
 app.engine(
   "handlebars",
@@ -120,6 +122,10 @@ app.post("/update/:id", function(req, res) {
     }
   );
 });
+app.post("/notes/:id", function (req, res) {
+  console.log("notes", req.url, req.params, req.body)
+  res.json({"roundtrip": true})
+})
 const apiRoute = require('./routes/apiRoutes');
 app.use('/', apiRoute);
 
