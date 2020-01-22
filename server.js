@@ -117,7 +117,7 @@ app.post("/notes/:id", function (req, res) {
   console.log("notes", req.url, req.params, req.body)
   db.Note.create(req.body)
   .then(function(dbNote) {
-    return db.Article.findOneAndUpdate({}, { $push: { notes: dbNote._id}}, { new: true});
+    return db.Article.findOneAndUpdate({_id:req.params.id}, { $push: { notes: dbNote._id}}, { new: true});
   })
   .then(function(dbArticle) {
     res.json(dbArticle);
@@ -131,7 +131,7 @@ Handlebars.registerHelper("link", function(text, links) {
   var url = Handlebars.escapeExpression(links),
       text = Handlebars.escapeExpression(text)
       
- return new Handlebars.SafeString("<a href='" + url + "'>" + text +"</a>");
+ return new Handlebars.SafeString("<a href='" + url + "https://bbc.com"+ "'>" + text +"</a>");
 });
 const apiRoute = require('./routes/apiRoutes');
 app.use('/', apiRoute);
