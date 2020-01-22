@@ -18,7 +18,7 @@ app.engine(
   })
 );
 app.set("view engine", "handlebars");
-var databaseUrl = "mongodb://localhost/news";
+var databaseUrl = process.env.MONGODB_URI || "mongodb://localhost/news";
 mongoose.connect(databaseUrl, { useNewUrlParser: true, useUnifiedTopology: true });
   app.get("/scrape", function (req, res) {
     axios.get("https://www.bbc.com").then(function (response) {
