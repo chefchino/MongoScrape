@@ -6,7 +6,7 @@ var newArticle = new Schema({
         trim: true,
         required: "String needed"
     },
-    link: {
+    links: {
         type: String
     },
     summary: {

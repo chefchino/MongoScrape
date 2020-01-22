@@ -1,6 +1,7 @@
 var axios = require("axios");
 var cheerio = require("cheerio");
 var express = require("express");
+var Handlebars = require("handlebars");
 var exphbs = require("express-handlebars");
 var mongoose = require("mongoose");
 var mongojs = require("mongojs");
@@ -24,12 +25,12 @@ mongoose.connect(databaseUrl, { useNewUrlParser: true, useUnifiedTopology: true 
       var $ = cheerio.load(response.data);
       $("ul.media-list--fixed-height h3.media__title").each(function (i, element) {
         var title = $(element).children().text().trim();
-        var link = $(element).find("a").attr("href");
+        var links = $(element).find("a").attr("href");
         var summary = $(element).siblings().text().trim()
         var photo = $(element).parent().siblings().find("img").attr("src");
         let data = {
           title: title,
-          link: link,
+          links: links,
           summary: summary,
           photo: photo
         }
@@ -52,7 +53,7 @@ app.get("/articles", function (req, res) {
           id: data[i]._id,
           title: data[i].title,
           summary: data[i].summary,
-          link: data[i].link
+          links: data[i].links
         };
         renderStuff.push(articleData)
       }
@@ -63,7 +64,7 @@ app.get("/articles", function (req, res) {
     });
 });
 app.get("/saved", function (req, res) {
-  db.Article.find({saved: true})
+  db.Article.find({})
   .populate("notes")
   .then(function(data) {
     let renderSaved = [];
@@ -72,7 +73,7 @@ app.get("/saved", function (req, res) {
         id: data[i]._id,
         title: data[i].title,
         summary: data[i].summary,
-        link: data[i].link, 
+        links: data[i].links, 
         notes: data[i].notes.map(note => note.note )
       };
       renderSaved.push(articleSaved)
@@ -125,6 +126,13 @@ app.post("/notes/:id", function (req, res) {
     res.json(err);
   })
 })
+
+Handlebars.registerHelper("link", function(text, links) {
+  var url = Handlebars.escapeExpression(links),
+      text = Handlebars.escapeExpression(text)
+      
+ return new Handlebars.SafeString("<a href='" + url + "'>" + text +"</a>");
+});
 const apiRoute = require('./routes/apiRoutes');
 app.use('/', apiRoute);
 app.listen(PORT, function () {
