@@ -147,12 +147,12 @@ app.post("/notes/:id", function (req, res) {
   })
 })
 
-Handlebars.registerHelper("link", function(text, linking, links) {
+Handlebars.registerHelper("link", function(text,  links) {
   var url = Handlebars.escapeExpression(links),
-      linking = Handlebars.escapeExpression(linking),
+      // linking = Handlebars.escapeExpression(linking),
       text = Handlebars.escapeExpression(text)
       
- return new Handlebars.SafeString("<a href='" + linking + url +  "'>" + text +"</a>");
+ return new Handlebars.SafeString("<a href='" +  url +  "'>" + text +"</a>");
 });
 const apiRoute = require('./routes/apiRoutes');
 app.use('/', apiRoute);
