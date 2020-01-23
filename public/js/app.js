@@ -27,7 +27,7 @@ $(document).ready(function () {
     })
     $(".commentNotes").on("click", function () {
         lastClicked = $(this).attr("data-id")
-        console.log("I'm in!!", lastClicked)
+        console.log("I'm in!!", this)
         $('#modal1').modal('open');
     })
     $(document).on('click', "#submit", function (event) {
@@ -52,6 +52,18 @@ $(document).ready(function () {
     $(document).on("click", "#saveNav", function (req, res) {
         window.location.replace('/saved')
     })
-
+    $(".remove").on("click", function () {
+        let lastClicked = $(this);
+        console.log("I'm in!!", lastClicked)
+        $.ajax({
+            type: "GET",
+            url:"/delete/"+lastClicked.attr("data-id"),
+            success: function (data) {
+                console.log("data", data)
+                // lastClicked.remove();
+                location.reload();
+            }
+        });
+    });
 
 })

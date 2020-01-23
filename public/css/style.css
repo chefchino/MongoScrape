@@ -54,3 +54,17 @@ li {
 a {
     color: white;
 }
+.remove {
+    color: goldenrod;
+    font-size: 48px;
+    position: relative;
+    top: -20px;
+    left:-175px;
+    float:right;
+    cursor: pointer;
+    z-index: 1000;
+}
+.remove:hover {
+    clear:both;
+    color: #edf055;
+  }

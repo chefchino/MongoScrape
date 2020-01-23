@@ -47,13 +47,15 @@ mongoose.connect(databaseUrl, { useNewUrlParser: true, useUnifiedTopology: true 
 app.get("/articles", function (req, res) {
   db.Article.find({})
     .then(function (data) {
+      console.log("data", data)
       let renderStuff = [];
       for (var i = 0; i < data.length; i++) {
         var articleData = {
           id: data[i]._id,
           title: data[i].title,
           summary: data[i].summary,
-          links: data[i].links
+          links: data[i].links,
+          photo: data[i].photo
         };
         renderStuff.push(articleData)
       }
@@ -74,6 +76,7 @@ app.get("/saved", function (req, res) {
         title: data[i].title,
         summary: data[i].summary,
         links: data[i].links, 
+        photo: data[i].photo,
         notes: data[i].notes.map(note => note.note )
       };
       renderSaved.push(articleSaved)
@@ -81,6 +84,23 @@ app.get("/saved", function (req, res) {
     res.render("saved", {Article: renderSaved})
   })
 })
+app.get("/delete/:id", function (req, res) {
+  console.log("I'm IN", mongojs.ObjectId(req.params.id))
+  db.Article.remove(
+    {
+      _id: mongojs.ObjectId(req.params.id)
+    }, 
+    function (err, removed) {
+      console.log("removed", removed)
+    if (err) {
+      console.log(err);
+      res.send(err);
+    } else {
+      console.log("deleted article");
+      res.send(removed);
+    }
+  });
+  });
 app.get("/clear", function (req, res) {
   db.Article.remove({saved: false}, function (err, res) {
     if (err) {

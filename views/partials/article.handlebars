@@ -1,14 +1,17 @@
 <li id="li-{{id}}">
     {{#if saved}}
-    <button class="commentNotes waves-effect waves-light btn-small" 
- data-id="{{id}}"data-saved="{{saved}}"> Make a Comment</button>
+    <button class="commentNotes waves-effect waves-light btn-small" data-id="{{id}}" data-saved="{{saved}}"> 
+    Make a Comment</button>
+    <span class="remove" data-id="{{id}}">𝘅</span>
     {{/if}}
     {{#unless saved}}
-    <button   class="saveArt waves-effect waves-light btn-small" 
-    data-id="{{id}}"data-saved="{{saved}}"> Save Article</button>
+    <button class="saveArt waves-effect waves-light btn-small" data-id="{{id}}" data-saved="{{saved}}"> 
+    Save Article</button>
     {{/unless}}
     <h3 id="title3">{{title}}</h3>
     <h5>{{summary}}</h5>
     {{link "See Article" url}}
-    <ul class="commentArt"><h5 class="titleA">Comment Section</h5>{{notes}}</ul>
+    <ul class="commentArt">
+    <h5 class="titleA">Comment Section</h5>{{notes}}
+    </ul>
 </li>
