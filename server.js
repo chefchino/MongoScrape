@@ -21,16 +21,17 @@ app.set("view engine", "handlebars");
 var databaseUrl = process.env.MONGODB_URI || "mongodb://localhost/news";
 mongoose.connect(databaseUrl, { useNewUrlParser: true, useUnifiedTopology: true });
   app.get("/scrape", function (req, res) {
-    axios.get("https://www.bbc.com/news").then(function (response) {
+    axios.get("https://www.bbc.com").then(function (response) {
       var $ = cheerio.load(response.data);
       $("ul.media-list--fixed-height h3.media__title").each(function (i, element) {
         var title = $(element).children().text().trim();
         var links = $(element).find("a").attr("href");
+        var links1 = links.charAt(0)==="/" ? "https://www.bbc.com"+links : links
         var summary = $(element).siblings().text().trim()
         var photo = $(element).parent().siblings().find("img").attr("src");
         let data = {
           title: title,
-          links: links,
+          links: links1,
           summary: summary,
           photo: photo
         }
@@ -152,7 +153,7 @@ Handlebars.registerHelper("link", function(text,  links) {
       // linking = Handlebars.escapeExpression(linking),
       text = Handlebars.escapeExpression(text)
       
- return new Handlebars.SafeString("<a href='" +  url +  "'>" + text +"</a>");
+ return new Handlebars.SafeString("<a href='" +   url +  "'>" + text +"</a>");
 });
 const apiRoute = require('./routes/apiRoutes');
 app.use('/', apiRoute);

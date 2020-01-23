@@ -60,7 +60,6 @@ $(document).ready(function () {
             url:"/delete/"+lastClicked.attr("data-id"),
             success: function (data) {
                 console.log("data", data)
-                // lastClicked.remove();
                 location.reload();
             }
         });
